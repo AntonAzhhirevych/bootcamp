@@ -31,7 +31,6 @@ const sharm = 15;
 const hurgada = 25;
 const taba = 6;
 const userInput = Number(prompt('Введите количество мест!'));
-console.log(userInput);
 const incorrect = 'не корректный ввод!';
 if (userInput === 0) {
   alert('Нам очень жаль, приходите еще!');
