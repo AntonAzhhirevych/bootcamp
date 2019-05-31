@@ -22,22 +22,22 @@
   🔔 PS: для удобства и чистоты кода сохраните в переменные сообщения отображаемые в alert
 */
 
-// const adminLogin = 'admin';
-// const adminPassword = 'm4ngo1zh4ackz0r';
+const adminLogin = 'admin';
+const adminPassword = 'm4ngo1zh4ackz0r';
 
-// const userLogin = prompt('Введите ваш логин!');
+const userLogin = prompt('Введите ваш логин!');
 
-// if (userLogin === null) {
-//   alert('Отменено пользователем!');
-// } else if (userLogin === adminLogin) {
-//   const userPassword = prompt('Введите ваш пароль!');
-//   if (userPassword === adminPassword) {
-//     alert('Добро пожаловать!');
-//   } else {
-//     alert('Доступ запрещен, неверный пароль!');
-//   }
-// } else {
-//   alert('Доступ запрещен, неверный логин!');
-// }
+if (userLogin === null) {
+  alert('Отменено пользователем!');
+} else if (userLogin === adminLogin) {
+  const userPassword = prompt('Введите ваш пароль!');
+  if (userPassword === adminPassword) {
+    alert('Добро пожаловать!');
+  } else {
+    alert('Доступ запрещен, неверный пароль!');
+  }
+} else {
+  alert('Доступ запрещен, неверный логин!');
+}
 
 
