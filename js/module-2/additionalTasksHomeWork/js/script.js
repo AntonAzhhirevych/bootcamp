@@ -1,3 +1,6 @@
+'use strict';
+
+
 // task-2
 
 /*
@@ -66,6 +69,13 @@
   Предполагается, что посетитель вводит только числа, 
   обрабатывать невалидный ввод вроде строк 'qwerty' не нужно.
 */
+// let user;
+// do {
+//   user = prompt('число больше 100');
+//   if (user === null) {
+//     break;
+//   }
+// } while (user < 100);
 
 // do {
 //   userInput = prompt('Введите число больше 100!');
@@ -107,8 +117,9 @@
 */
 
 // const message = 'May the force be with you';
-// let longestWord = message[0];
 // const messageSplit = message.split(' ');
+// let longestWord = messageSplit[0];
+
 
 // for (let word of messageSplit) {
 //   if (word.length > longestWord.length) {
@@ -153,6 +164,3 @@
 // userInput >= min && userInput <= max
 //   ? alert('Поздравляем, Вы угадали!')
 //   : alert('Сожалеем, Вы не угадали!');
-
-
-
