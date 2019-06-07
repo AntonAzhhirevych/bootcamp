@@ -109,11 +109,11 @@
  */
 
 // const Storage = function(items) {
-//   this.items,
-//     (this.getItems = function() {
-//       this.items = items;
-//       return items;
-//     });
+//   this.items;
+//   this.getItems = function() {
+//     this.items = items;
+//     return items;
+//   };
 //   this.addItem = function(item) {
 //     items.push(item);
 //   };
@@ -136,3 +136,4 @@
 
 // storage.removeItem('Пролонгер');
 // console.log(storage.items); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
+

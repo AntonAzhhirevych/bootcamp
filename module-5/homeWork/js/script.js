@@ -9,75 +9,75 @@ const Priority = {
 const Notepad = function(notes = []) {
   // Створив конструктор який буде приймати в себе масив елемментів.
 
-  (this.notes = notes), // записуємо переданий масив
-    (this.getNotes = function() {
-      // метод який повертає масив
-      return this.notes;
-    }),
-    (this.findNoteById = function(id) {
-      // шукаємо обєкт по id в масиві.
-      for (let obj of this.notes) {
-        if (obj.id === id) {
-          return obj; //якщо знайдемо то повернемо весь обєкт
-        }
+  this.notes = notes; // записуємо переданий масив
+  this.getNotes = function() {
+    // метод який повертає масив
+    return this.notes;
+  };
+  this.findNoteById = function(id) {
+    // шукаємо обєкт по id в масиві.
+    for (let obj of this.notes) {
+      if (obj.id === id) {
+        return obj; //якщо знайдемо то повернемо весь обєкт
       }
-      return undefined; //якщо ні undefined
-    }),
-    (this.saveNote = function(note) {
-      // приймаємо новий обєкт
-      return this.notes.push(note); // додаємо в масив
-    }),
-    (this.deleteNote = function(id) {
-      // приймаємо id
-      for (let obj of this.notes) {
-        //переберемо наш масив обєктів
-        if (obj.id === id) {
-          const index = this.notes.indexOf(obj); //визначимо індекс обєкта
-          this.notes.splice(index, 1); //видаляємо по індексу
-        }
+    }
+    return undefined; //якщо ні undefined
+  };
+  this.saveNote = function(note) {
+    // приймаємо новий обєкт
+    return this.notes.push(note); // додаємо в масив
+  };
+  this.deleteNote = function(id) {
+    // приймаємо id
+    for (let obj of this.notes) {
+      //переберемо наш масив обєктів
+      if (obj.id === id) {
+        const index = this.notes.indexOf(obj); //визначимо індекс обєкта
+        this.notes.splice(index, 1); //видаляємо по індексу
       }
-    }),
-    (this.updateNoteContent = function(id, updatedContent) {
-      // обновлюємо контент по переданому id
-      for (let obj of this.notes) {
-        if (obj.id === id) {
-          return (obj = Object.assign(obj, updatedContent)); // використовуємо метод assing
-        }
+    }
+  };
+  this.updateNoteContent = function(id, updatedContent) {
+    // обновлюємо контент по переданому id
+    for (let obj of this.notes) {
+      if (obj.id === id) {
+        return (obj = Object.assign(obj, updatedContent)); // використовуємо метод assing
       }
-    }),
-    (this.updateNotePriority = function(id, priority) {
-      //оновлюємо приорітет
-      for (let obj of this.notes) {
-        if (obj.id === id) {
-          obj.priority = priority;
-          return obj;
-        }
+    }
+  };
+  this.updateNotePriority = function(id, priority) {
+    //оновлюємо приорітет
+    for (let obj of this.notes) {
+      if (obj.id === id) {
+        obj.priority = priority;
+        return obj;
       }
-    }),
-    (this.filterNotesByQuery = function(query) {
-      // новий масив по фільтру
-      const newArr = [];
+    }
+  };
+  this.filterNotesByQuery = function(query) {
+    // новий масив по фільтру
+    const newArr = [];
 
-      for (let obj of this.notes) {
-        const titleLower = obj.title.toLowerCase(); // переводимо в потрібний нам регістр
-        const bodyLower = obj.body.toLowerCase();
-        if (titleLower.includes(query) || bodyLower.includes(query)) {
-          // шукаємо переданий аргумент в наших обєктах
-          newArr.push(obj);
-        }
+    for (let obj of this.notes) {
+      const titleLower = obj.title.toLowerCase(); // переводимо в потрібний нам регістр
+      const bodyLower = obj.body.toLowerCase();
+      if (titleLower.includes(query) || bodyLower.includes(query)) {
+        // шукаємо переданий аргумент в наших обєктах
+        newArr.push(obj);
       }
-      return newArr;
-    }),
-    (this.filterNotesByPriority = function(priority) {
-      const newArr = [];
-      for (let obj of this.notes) {
-        if (obj.priority === priority) {
-          newArr.push(obj);
-        }
+    }
+    return newArr;
+  };
+  this.filterNotesByPriority = function(priority) {
+    const newArr = [];
+    for (let obj of this.notes) {
+      if (obj.priority === priority) {
+        newArr.push(obj);
       }
+    }
 
-      return newArr;
-    });
+    return newArr;
+  };
 };
 
 const initialNotes = [
