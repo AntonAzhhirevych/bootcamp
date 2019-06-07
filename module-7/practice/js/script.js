@@ -60,9 +60,11 @@
 
 // метод мап в стрелочні функції
 
-// let result = arr.map(el=> el*2)
+// const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// console.log(result);
+// let result = arr.map(el => el * 2);
+
+// console.table(result);
 
 //--------------------------------------------------FILTER---------------------------------------------
 
@@ -149,14 +151,38 @@
 // МЕДОЯ ЯКИЙ ЗМІНЮЄ ОРИГІНАЛ  &&  ПОРІВНЮЄ ПОЧЕРЗІ ЕЛЕМЕНТИ МАСИВУ
 // МЕТОД ЯКИЙ ПОРІВНЮЄ ЕЛЕМЕНТИ МАСИВУ
 
-// let arr = [1, 2, 3, 4, 13, 88, 5, 6, 12, 7, 8, 9, 55, 10];
+const numbers = [2, 1, 4, 3, 5];
+// Отсортирует по возрастанию
+console.log('Before sort: ', numbers); // [2, 1, 4, 3, 5]
+console.log('After sort: ', numbers.sort()); // [1, 2, 3, 4, 5]
+
+const clients = ['Mango', 'Ajax', 'Poly', 'Chelsey'];
+
+// Отсортирует по алфавиту
+console.log('Before sort: ', clients); // ["Mango", "Ajax", "Poly", "Chelsey"]
+console.log('After sort: ', clients.sort()); // ["Ajax", "Chelsey", "Mango", "Poly"]
+
+// console.log(arr.sort());
 
 // arr.sort(function(a,b){// цей запис актуальний тільки для чисел
 //    return a-b // b-a СТАВИТЬ ЕЛЕМЕНТУ ПО ВОЗРОСТАННЮ ТА НАВПАКИ
 // })
 
-// arr.sort((a, b) => a - b);
-
+// arr.sort((a, b) => b - a);
+// console.log(arr);
 
 //------------------------------------------ CHANING------------------------------------
 
+// const arr = ['mango', 'poly', 'gena'];
+
+// const result = [...new Set(arr)];
+
+// console.log(result);
+
+const arr = [12, 34, 56, 77, 33, 11];
+
+const result = arr.reduce((acc, el) => {
+  return acc + el;
+});
+
+console.log(result);
