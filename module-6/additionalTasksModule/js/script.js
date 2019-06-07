@@ -60,10 +60,13 @@
 //     return this._value;
 //   }
 //   append(str) {
-//     return this._value + str;
+//     return (this._value = this.value + str);
+//   }
+//   prepend(str) {
+//     return (this._value = str + this._value);
 //   }
 //   pad(str) {
-//     return str + this._value;
+//     return (this._value = str + this._value + str);
 //   }
 // }
 
@@ -80,53 +83,53 @@
 
 // task-(3,4,5)
 
-class Car {
-  constructor({ maxSpeed = 0, price }) {
-    this.speed = 0;
-    this.maxSpeed = maxSpeed;
-    this.running = false;
-    this.distance = 0;
-    this.price = price;
-  }
+// class Car {
+//   constructor({ maxSpeed = 0, price }) {
+//     this.speed = 0;
+//     this.maxSpeed = maxSpeed;
+//     this.running = false;
+//     this.distance = 0;
+//     this.price = price;
+//   }
 
-  get value() {
-    return this.price;
-  }
-  set value(value) {
-    return (this.price = value);
-  }
+//   get value() {
+//     return this.price;
+//   }
+//   set value(value) {
+//     return (this.price = value);
+//   }
 
-  static getSpecs(car) {
-    console.log(`${car.maxSpeed}, ${car.speed}, ${car.running} , ${car.distance}.`);
-  }
+//   static getSpecs(car) {
+//     console.log(`${car.maxSpeed}, ${car.speed}, ${car.running} , ${car.distance}.`);
+//   }
 
-  turnOn() {
-    return (this.running = true);
-  }
+//   turnOn() {
+//     return (this.running = true);
+//   }
 
-  turnOff() {
-    return (this.running = false);
-  }
+//   turnOff() {
+//     return (this.running = false);
+//   }
 
-  accelerate(spd) {
-    if (spd <= this.maxSpeed) {
-      return (this.speed = spd);
-    }
-  }
+//   accelerate(spd) {
+//     if (spd <= this.maxSpeed) {
+//       return (this.speed = spd);
+//     }
+//   }
 
-  decelerate(spd) {
-    if (spd <= this.maxSpeed && spd > 0) {
-      return (this.speed = spd);
-    }
-  }
+//   decelerate(spd) {
+//     if (spd <= this.maxSpeed && spd > 0) {
+//       return (this.speed = spd);
+//     }
+//   }
 
-  drive(hours) {
-    // киллометраж
-    if (this.running) {
-      return (this.distance = hours * this.speed);
-    }
-  }
-}
+//   drive(hours) {
+//     // киллометраж
+//     if (this.running) {
+//       return (this.distance = hours * this.speed);
+//     }
+//   }
+// }
 
 // const car = new Car({ maxSpeed: 100 });
 // car.turnOn();
@@ -140,3 +143,4 @@ class Car {
 
 // car.value = 4000;
 // console.log(car.value); // 4000
+
