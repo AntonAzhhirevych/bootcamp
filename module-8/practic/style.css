@@ -1,0 +1,24 @@
+img {
+  display: block;
+  height: auto;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.box {
+  border: 3px solid tomato;
+}
+
+.backgraund {
+  background-color: purple;
+}
+
+.container {
+  display: flex;
+  background-color: tomato;
+}
+.inner {
+  background-color: purple;
+  width: 100px;
+  height: 100px;
+}
