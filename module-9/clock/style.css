@@ -1,0 +1,40 @@
+.clock {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  margin: auto;
+  position: relative;
+  background-color: black;
+}
+
+.hand {
+  height: 2px;
+  width: 48%;
+  background-color: blue;
+  position: absolute;
+  top: 50%;
+  transform-origin: 100%;
+}
+
+.sec {
+  background-color: rgb(108, 233, 255);
+}
+
+.hour {
+  background-color: rgb(241, 255, 43);
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  width: 15%;
+  height: 30px;
+  border: 1px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  background-color: white;
+}
