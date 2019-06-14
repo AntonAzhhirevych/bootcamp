@@ -201,14 +201,14 @@ function createNoteFooter(Priority) {
 
   noteSection.append(
     createActionButton(ICON_TYPES.ARROW_DOWN, NOTE_ACTIONS.INCREASE_PRIORITY),
-    createActionButton(ICON_TYPES.ARROW_UP, NOTE_ACTIONS.DECREASE_PRIORITY)
+    createActionButton(ICON_TYPES.ARROW_UP, NOTE_ACTIONS.DECREASE_PRIORITY),
   );
 
   noteSection.appendChild(notePriority);
 
   noteSection2.append(
     createActionButton(ICON_TYPES.EDIT, NOTE_ACTIONS.EDIT),
-    createActionButton(ICON_TYPES.DELETE, NOTE_ACTIONS.DELETE)
+    createActionButton(ICON_TYPES.DELETE, NOTE_ACTIONS.DELETE),
   );
 
   return noteFooter;
