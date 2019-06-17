@@ -9,50 +9,53 @@ class Notepad {
     NORMAL: 1,
     HIGH: 2,
   };
-
   get notes() {
     return this._notes;
   }
 
-  findNoteById = function(id) {
-    // шукаємо обєкт по id в масиві.
+  generateUniqueId = () =>
+    Math.random()
+      .toString(36)
+      .substring(2, 15) +
+    Math.random()
+      .toString(36)
+      .substring(2, 15);
 
+  findNoteById = function(id) {
     this.notes.find(obj => {
       if (obj.id === id) {
-        return obj; //якщо знайдемо то повернемо весь обєкт
+        return obj;
       }
     });
     return undefined;
   };
 
   saveNote = function(note) {
-    // приймаємо новий обєкт
-    return this.notes.push(note); // додаємо в масив
+    return this.notes.push(note);
   };
 
   deleteNote = function(id) {
-    // приймаємо id
     this.notes.find(obj => (obj.id === id ? obj : undefined));
   };
 
   updateNoteContent = function(id, updatedContent) {
-    // обновлюємо контент по переданому id
     this.notes.find(obj =>
       obj.id === id ? (obj = Object.assign(obj, updatedContent)) : null
     );
   };
   updateNotePriority = function(id, priority) {
-    //оновлюємо приорітет
     this.notes.find(obj => (obj.id === id ? (obj.priority = priority) : null));
   };
   filterNotesByQuery = function(query) {
-    // новий масив по фільтру
     const newArr = [];
 
     this.notes.filter(obj => {
       const titleLower = obj.title.toLowerCase(); // переводимо в потрібний нам регістр
       const bodyLower = obj.body.toLowerCase();
-      if (titleLower.includes(query) || bodyLower.includes(query)) {
+      if (
+        titleLower.includes(query.toLowerCase()) ||
+        bodyLower.includes(query.toLowerCase())
+      ) {
         newArr.push(obj);
       }
     });
@@ -123,8 +126,54 @@ const initialNotes = [
 
 const notepad = new Notepad(initialNotes);
 
-const noteList = document.querySelector('.note-list');
+//---------------------------------------------REFERENSE-------------------------------------------------------------------------
 
+const REFS = {
+  noteList: document.querySelector('.note-list'), //ul
+  form: document.querySelector('.note-editor'), // форма для создания новой заметки
+  titleInput: document.querySelector('.note_title'), // название заметки
+  bodyInput: document.querySelector('.note_body'), // текст
+  searchForm: document.querySelector('.search-form__input'), // поле для фильтрации заметок
+  deleteNote: document.querySelector('button[data-action="edit-note"]'),
+};
+// console.log(REFS.titleInput);
+// console.log(REFS.bodyInput);
+//------------------------------------------LISTENER------------------------------------------------------------------
+
+REFS.searchForm.addEventListener('input', handleFilterChange);
+
+REFS.form.addEventListener('submit', handleSubmit);
+
+REFS.noteList.addEventListener('click', handleDeleteNote);
+//---------------------------------------HANDLE FUNCTION----------------------------------------------------------------
+
+function handleFilterChange(event) {
+  // console.log(e.target.value);
+  const filterNotes = notepad.filterNotesByQuery(event.target.value);
+  renderNoteList(REFS.noteList, filterNotes);
+  event.preventDefault();
+
+  // console.table(search);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  const title = REFS.titleInput.value.trim(); // .trim - убрать все пробели
+  // console.log('title', title);
+  const body = REFS.bodyInput.value.trim();
+  // console.log('body', body);
+
+  if (title !== '' && body !== '') {
+    REFS.form.reset(); // очистит поля для ввода после сохранения
+    addItemToList(title, body); // рендер функция
+  } else {
+    alert('Для добавления заметки необходимо заполнить все поля!!!');
+  }
+}
+function handleDeleteNote(event) {
+  if (event.target.parentNode.dataset.action === 'delete-note')
+    removeListItem(event.target.closest('li'));
+}
+//-------------------------------------CREATE LIST--------------------------------------------------------------
 function createListItem(note) {
   const noteListItem = document.createElement('li');
   noteListItem.classList.add('note-list__item');
@@ -202,12 +251,35 @@ function createNoteFooter(Priority) {
   return noteFooter;
 }
 
-//-----------------------------------render-----------------------------------------
+//-----------------------------------RENDER FUNCTION-----------------------------------------
+// функция для добавления новой заметки
+function addItemToList(name, text) {
+  let listItem = createListItem({
+    id: notepad.generateUniqueId(), // генератор id
+    title: name,
+    body: text,
+    priority: 0,
+  });
+  REFS.noteList.append(listItem); // добавить в ul
+}
+//функция для удаления заметки
+const removeListItem = item => {
+  notepad.deleteNote(item.dataset.id);
+  item.remove();
+};
 
+// функция для  отрисовки заметок
 function renderNoteList(listRef, notes) {
   const cards = notes.map(note => createListItem(note));
+  listRef.innerHTML = ''; // делает изначально ul пустим
+  listRef.append(...cards);
+  return listRef;
+}
+// функция для  отрисовки новой заметки
+function renderNoteUser(listRef, notes) {
+  const cards = createListItem(notes);
   listRef.append(...cards);
   return listRef;
 }
 
-renderNoteList(noteList, notepad.notes);
+renderNoteList(REFS.noteList, notepad.notes);
