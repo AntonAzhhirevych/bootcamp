@@ -1,4 +1,3 @@
-// import { PRIORITY_TYPES } from './utils/constants';
 import { PRIORITY_TYPES } from './utils/constants';
 
 const initialNotes = [
