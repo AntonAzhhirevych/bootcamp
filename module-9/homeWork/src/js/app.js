@@ -22,12 +22,7 @@ class Notepad {
       .substring(2, 15);
 
   findNoteById = function(id) {
-    this.notes.find(obj => {
-      if (obj.id === id) {
-        return obj;
-      }
-    });
-    return undefined;
+    this.notes.find(obj => obj.id === id);
   };
 
   saveNote = function(note) {
@@ -35,14 +30,16 @@ class Notepad {
   };
 
   deleteNote = function(id) {
-    this.notes.find(obj => (obj.id === id ? obj : undefined));
+    this.notes = this.notes.filter(obj => obj.id !== id);
   };
 
-  updateNoteContent = function(id, updatedContent) {
-    this.notes.find(obj =>
-      obj.id === id ? (obj = Object.assign(obj, updatedContent)) : null
-    );
-  };
+  updateNoteContent(id, updatedContent) {
+    const elem = this.notes.find(obj => obj.id === id);
+    if (elem) {
+      Object.assign(elem, updatedContent);
+    }
+  }
+
   updateNotePriority = function(id, priority) {
     this.notes.find(obj => (obj.id === id ? (obj.priority = priority) : null));
   };
