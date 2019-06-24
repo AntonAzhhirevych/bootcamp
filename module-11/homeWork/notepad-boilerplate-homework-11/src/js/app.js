@@ -1,12 +1,16 @@
 import MicroModal from 'micromodal';
 import { Notyf } from 'notyf';
 import Notepad from './notepad-model';
-import { addItemToList, removeListItem, renderNoteList } from './render';
+import { renderNoteList } from './render';
 import initialNotes from '../assets/notes.json';
 import 'notyf/notyf.min.css';
 import { handleShowForm, handleFilterChange, handleSubmit, handleDeleteNote } from './handle';
 
-const notepad = new Notepad(initialNotes);
+//localStorage
+const local = localStorage.getItem('notes');
+const localNotes = JSON.parse(local);
+
+const notepad = new Notepad(localNotes);
 MicroModal.init();
 const notyf = new Notyf();
 
@@ -14,6 +18,7 @@ const notyf = new Notyf();
 
 export const REFS = {
   noteList: document.querySelector('.note-list'), //ul
+  noteListLi: document.querySelector('note-list__item'), //ul > li
   form: document.querySelector('.note-editor'), // форма для создания новой заметки
   titleInput: document.querySelector('.note_title'), // название заметки
   bodyInput: document.querySelector('.note_body'), // текст
@@ -43,3 +48,5 @@ const card = Handlebars.compile(template);
 renderNoteList(REFS.noteList, notepad.notes);
 
 export { notepad, card, notyf, MicroModal };
+
+console.log(initialNotes);

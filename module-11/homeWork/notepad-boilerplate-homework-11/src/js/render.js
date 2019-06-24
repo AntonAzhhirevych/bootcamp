@@ -8,8 +8,17 @@ function addItemToList(name, text) {
     body: text,
     priority: 0,
   });
-  REFS.noteList.insertAdjacentHTML('beforeend', listItem); // добавить в ul
-  notyf.success('Заметка добавленна!!!');
+
+  let listItemNote = {
+    id: notepad.generatorId(), // генератор id
+    title: name,
+    body: text,
+    priority: 0,
+  };
+  notepad.saveNote(listItemNote).then(() => {
+    REFS.noteList.insertAdjacentHTML('beforeend', listItem); // добавить в ul
+    notyf.success('Заметка добавленна!!!');
+  });
 }
 
 //функция для удаления заметки
@@ -23,9 +32,7 @@ const removeListItem = item => {
 function renderNoteList(listRef, notes) {
   const cards = notes.map(note => card(note));
   listRef.innerHTML = ''; // делает изначально ul пустим
-  // listRef.innerHTML = cards;
   REFS.noteList.insertAdjacentHTML('beforeend', cards.join(' ')); // добавить в ul
-
   return listRef;
 }
 

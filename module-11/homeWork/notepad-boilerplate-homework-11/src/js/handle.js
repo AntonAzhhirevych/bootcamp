@@ -3,7 +3,6 @@ import { MicroModal, REFS, notyf, notepad } from './app';
 
 function handleShowForm() {
   MicroModal.show('note-editor-modal');
-  // REFS.newForm.classList.replace('micromodal-slide', 'micromodal-slide.is-open');
 }
 function handleFilterChange(event) {
   const filterNotes = notepad.filterNotesByQuery(event.target.value);
@@ -18,15 +17,15 @@ function handleSubmit(event) {
   if (title !== '' && body !== '') {
     REFS.form.reset(); // очистит поля для ввода после сохранения
     addItemToList(title, body); // рендер функция
-    // REFS.newForm.classList.replace('micromodal-slide.is-open', 'micromodal-slide');
     MicroModal.close('note-editor-modal');
   } else {
     notyf.error('Для добавления заметки необходимо заполнить все поля!!!');
   }
 }
 function handleDeleteNote(event) {
-  if (event.target.parentNode.dataset.action === 'delete-note')
+  if (event.target.parentNode.dataset.action === 'delete-note') {
     removeListItem(event.target.closest('li'));
+  }
 }
 
 export { handleShowForm, handleFilterChange, handleSubmit, handleDeleteNote };
