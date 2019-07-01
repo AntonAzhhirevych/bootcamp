@@ -2,14 +2,25 @@ import MicroModal from 'micromodal';
 import { Notyf } from 'notyf';
 import Notepad from './utils/notepad-model';
 import { renderNoteList } from './utils/render';
-// import initialNotes from '../assets/notes.json';
+import initialNotes from '../assets/notes.json';
 import 'notyf/notyf.min.css';
 import { handleShowForm, handleFilterChange, handleSubmit, handleDeleteNote } from './utils/handle';
 
 //--LOCALSTORAGE
 //отримую локальні файли
 //додаю в клас
-const localNotes = JSON.parse(localStorage.getItem('notes'));
+let getLocalNotes = localStorage.getItem('notes');
+console.log(getLocalNotes);
+let localNotes;
+if (getLocalNotes) {
+  console.log('hello');
+  let local = JSON.parse(getLocalNotes);
+  localNotes = local ? local : [];
+  console.log('innotes', localNotes);
+}
+
+console.log(localNotes);
+
 const notepad = new Notepad(localNotes);
 
 //--PLAGINS

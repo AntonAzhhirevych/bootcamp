@@ -7,6 +7,7 @@ function handleShowForm() {
 //для ф заметок
 function handleFilterChange(event) {
   notepad.filterNotesByQuery(event.target.value).then(resolve => {
+    // console.log(resolve);
     renderNoteList(REFS.noteList, resolve);
     event.preventDefault();
   });
