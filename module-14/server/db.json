@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "title": "dsd",
+      "body": "dsd",
+      "priority": 0,
+      "id": 1
+    },
+    {
+      "title": "ds",
+      "body": "sdd",
+      "priority": 0,
+      "id": 2
+    }
+  ]
+}
